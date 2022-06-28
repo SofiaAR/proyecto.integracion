@@ -4,6 +4,9 @@ import cl.sofia.users.model.dtos.RoleDto;
 import cl.sofia.users.model.dtos.UserDto;
 import cl.sofia.users.model.entities.Role;
 import cl.sofia.users.model.entities.User;
+
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MapperDto {
@@ -19,7 +22,12 @@ public class MapperDto {
         userDto.setCreated_at(user.getCreated_at());
         userDto.setStatus(user.getStatus());
         userDto.setDni(user.getDni());
-        userDto.setRoles(user.getRoles().stream().map(MapperDto::roleEntityToRoleDto).collect(Collectors.toSet())); // EXPLICAR DAVID
+        Set<RoleDto> rolesDtoOfUser = user
+                .getRoles()
+                .stream()
+                .map(MapperDto::roleEntityToRoleDto)
+                .collect(Collectors.toSet());
+        userDto.setRoles(rolesDtoOfUser); // EXPLICAR DAVID
         return userDto;
     }
 

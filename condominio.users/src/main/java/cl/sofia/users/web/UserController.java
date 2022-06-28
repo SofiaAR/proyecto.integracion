@@ -5,6 +5,8 @@ import cl.sofia.users.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("users")
 public class UserController {
@@ -28,11 +30,11 @@ public class UserController {
     }
 
     @GetMapping("all")
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<List<UserDto>> findAll() {
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         userService.delete(id);
         return ResponseEntity.ok().build();

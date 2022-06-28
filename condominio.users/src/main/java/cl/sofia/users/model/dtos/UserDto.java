@@ -1,10 +1,12 @@
 package cl.sofia.users.model.dtos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserDto {
+public class UserDto implements Serializable {
+
 
     private Long id;
     private String name;
